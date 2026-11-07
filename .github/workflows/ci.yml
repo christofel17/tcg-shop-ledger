@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: mbstring, pdo, pdo_sqlite, xml, tokenizer, bcmath, ctype, fileinfo, intl
+          ini-values: memory_limit=-1
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Generate application key
+        run: php artisan key:generate --no-interaction --env=testing
+
+      - name: Check Code Style
+        run: ./vendor/bin/pint --test
+
+      - name: Run Tests
+        run: php artisan test
