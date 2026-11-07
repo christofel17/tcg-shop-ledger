@@ -32,3 +32,6 @@ auth.json
 # Laravel Boost / agent tool config (local to each machine)
 .claude/
 .mcp.json
+
+# Laravel Debugbar runtime data
+storage/debugbar/
