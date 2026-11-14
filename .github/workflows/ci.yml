@@ -9,6 +9,8 @@ on:
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
+    env:
+      APP_KEY: ${{ secrets.APP_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -29,9 +31,6 @@ jobs:
 
       - name: Install Dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
-
-      - name: Generate application key
-        run: php artisan key:generate --no-interaction --env=testing
 
       - name: Check Code Style
         run: ./vendor/bin/pint --test
