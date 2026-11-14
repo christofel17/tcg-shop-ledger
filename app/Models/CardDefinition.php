@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Model;
 
 class CardDefinition extends Model
 {
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
@@ -31,7 +30,7 @@ class CardDefinition extends Model
         'expanded',
         'regulation_mark',
         'image_small',
-        'image_large'
+        'image_large',
     ];
 
     public function cards(): HasMany

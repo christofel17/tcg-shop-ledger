@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum Type: string {
+enum Type: string
+{
     case Grass = 'Grass';
     case Fire = 'Fire';
     case Water = 'Water';

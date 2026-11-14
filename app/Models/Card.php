@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Enums\CardCondition;
-use App\Models\CardDefinition;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -19,7 +17,7 @@ class Card extends Model
         'card_definition_id',
         'condition',
         'price',
-        'language'
+        'language',
     ];
 
     protected $casts = [
